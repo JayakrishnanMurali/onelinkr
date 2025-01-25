@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import {
   Breadcrumb,
@@ -11,8 +11,7 @@ import {
 import { usePathname } from "next/navigation";
 
 export function NavBreadCrumbs() {
-
-  const pathName = usePathname()
+  const pathName = usePathname();
 
   const currentPath = pathName.split("/").pop();
 

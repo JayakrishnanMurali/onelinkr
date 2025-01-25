@@ -1,5 +1,6 @@
 import { AppSidebar } from "@/components/app-sidebar";
 import { NavBreadCrumbs } from "@/components/nev-breadcrumbs";
+import { Button } from "@/components/ui/button";
 
 import { Separator } from "@/components/ui/separator";
 import {
@@ -7,6 +8,7 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
+import { Share2 } from "lucide-react";
 
 export default function DashboardLayout({
   children,
@@ -21,6 +23,12 @@ export default function DashboardLayout({
               <SidebarTrigger className="-ml-1" />
               <Separator orientation="vertical" className="mr-2 h-4" />
               <NavBreadCrumbs />
+            </div>
+
+            <div>
+              <Button variant="secondary">
+                <Share2 /> Share
+              </Button>
             </div>
           </div>
         </header>
