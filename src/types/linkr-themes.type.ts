@@ -1,6 +1,10 @@
 import { type Layouts } from "react-grid-layout";
 
-export type LinkrComponentType =
+/**
+ * Defines the kinds of components we can render from the theme definition.
+ * - 'LucideIcon' is a special type for any Lucide icon (e.g., QrCode, User, etc.)
+ */
+export type LinkrNodeType =
   | "div"
   | "a"
   | "button"
@@ -8,33 +12,44 @@ export type LinkrComponentType =
   | "span"
   | "h1"
   | "p"
-  | "QrCode"
+  | "LucideIcon"
   | "CustomComponent";
 
-export type LinkrComponentProps = Record<string, unknown>;
+/**
+ * Props each node might have.
+ * - We include 'content' for text
+ * - 'iconName' for specifying which Lucide icon to render
+ */
+export interface LinkrNodeProps {
+  content?: string;
+  iconName?: string; // e.g. "QrCode", "User", etc.
+  [key: string]: unknown;
+}
 
-export interface LinkrThemeComponent {
+/**
+ * A single node in the theme. Each node has:
+ * - a unique `id` (which we also use as the layout `i`)
+ * - a `type` telling us what to render
+ * - optional CSS `className`
+ * - optional `props` (like content, href, etc.)
+ * - optional `children` for nested elements
+ */
+export interface LinkrNode {
   id: string;
-  type: LinkrComponentType;
+  type: LinkrNodeType;
   className?: string;
-  props?: LinkrComponentProps;
-  children?: LinkrThemeComponent[];
+  props?: LinkrNodeProps;
+  children?: LinkrNode[];
 }
 
-export interface LinkrThemeSection {
-  name: string;
-  id: string;
-  components: LinkrThemeComponent[];
-}
-
-export type LinkrThemeLayout = Layouts;
-
+/**
+ * The main theme interface.
+ * - `name` for identifying the theme
+ * - `nodes` is a flat array of top-level nodes
+ * - `layout` is a react-grid-layout config that matches node IDs
+ */
 export interface LinkrTheme {
   name: string;
-  label?: string;
-  description?: string;
-  sections: LinkrThemeSection[];
-  layouts: LinkrThemeLayout;
-  style?: Record<string, unknown>;
-  variables?: Record<string, unknown>;
+  nodes: LinkrNode[];
+  layout: Layouts;
 }

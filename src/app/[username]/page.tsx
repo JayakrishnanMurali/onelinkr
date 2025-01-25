@@ -1,4 +1,4 @@
-import { LinkCardsWrapper } from "@/components/link-cards-wrapper";
+import { ThemeRenderer } from "@/components/theme-renderer";
 import { notFound } from "next/navigation";
 import { use } from "react";
 
@@ -18,7 +18,7 @@ export default function UserPage({ params }: Props) {
   return (
     <main className="container mx-auto">
       <div className="min-h-[100vh] flex-1 rounded-xl bg-white md:min-h-min">
-        <LinkCardsWrapper />
+        <ThemeRenderer />
       </div>
     </main>
   );
