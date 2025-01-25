@@ -32,7 +32,7 @@ export function ThemeRenderer({ theme }: { theme: LinkrTheme }) {
         console.log("All Layouts:", allLayouts);
       }}
     >
-      {/* {theme?.sections?.flatMap((section) =>
+      {theme?.sections?.flatMap((section) =>
         section?.components?.map((component) => {
           console.log(
             component.id,
@@ -59,7 +59,7 @@ export function ThemeRenderer({ theme }: { theme: LinkrTheme }) {
             </div>
           );
         }),
-      )} */}
+      )}
     </ResponsiveReactGridLayout>
   );
 }
