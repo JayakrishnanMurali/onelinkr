@@ -20,11 +20,11 @@ export const ThemeRenderer = () => {
   const updateLayout = useThemeStore((state) => state.updateLayout);
 
   return (
-    <div className="min-h-[100vh] flex-1 rounded-xl bg-white md:min-h-min">
+    <div className="min-h-[100vh] flex-1 rounded-md bg-black md:min-h-min">
       <ResponsiveGridLayout
         className="layout"
         layouts={theme.layout}
-        breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
+        breakpoints={{ lg: 768, md: 996, sm: 768, xs: 480, xxs: 0 }}
         cols={{
           lg: 12,
           md: 8,

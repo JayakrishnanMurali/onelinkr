@@ -12,6 +12,7 @@ interface ThemeState {
 
   // actions
   updateLayout: (layouts: Layouts) => void;
+  resetTheme: () => void;
 }
 
 export const useThemeStore = create<ThemeState>()(
@@ -25,6 +26,8 @@ export const useThemeStore = create<ThemeState>()(
       // actions
       updateLayout: (layouts) =>
         set((state) => ({ theme: { ...state.theme, layout: layouts } })),
+
+      resetTheme: () => set({ theme: LinkrClassicTheme }),
     }),
     {
       name: "theme-storage",
