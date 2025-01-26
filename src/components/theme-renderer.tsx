@@ -24,22 +24,18 @@ export const ThemeRenderer = () => {
       <ResponsiveGridLayout
         className="layout"
         layouts={theme.layout}
-        breakpoints={{ lg: 768, md: 996, sm: 768, xs: 480, xxs: 0 }}
+        breakpoints={{ lg: 1200, md: 992, sm: 768 }}
         cols={{
-          lg: 12,
-          md: 8,
-          sm: 6,
-          xs: 4,
-          xxs: 2,
+          lg: 12, // Desktop
+          md: 8, // Tablet
+          sm: 4, // Mobile
         }}
         rowHeight={40}
         margin={[10, 10]}
         containerPadding={{
-          lg: [20, 20],
-          md: [15, 15],
-          sm: [10, 10],
-          xs: [5, 5],
-          xxs: [5, 5],
+          lg: [20, 20], // More padding for desktop
+          md: [15, 15], // Medium padding for tablet
+          sm: [10, 10], // Less padding for mobile
         }}
         isResizable
         isDraggable
