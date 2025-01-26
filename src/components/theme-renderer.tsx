@@ -12,15 +12,24 @@ import {
 import { type LinkrNode } from "@/types/linkr-themes.type";
 import { Responsive, WidthProvider } from "react-grid-layout";
 import { useThemeStore } from "@/stores/useThemeStore";
+import { useAtomValue } from "jotai";
+import { screenSizeAtom } from "@/atoms/themeAtoms";
+import { cn } from "@/lib/utils";
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
 export const ThemeRenderer = () => {
   const theme = useThemeStore((state) => state.theme);
   const updateLayout = useThemeStore((state) => state.updateLayout);
+  const screenSize = useAtomValue(screenSizeAtom);
 
   return (
-    <div className="min-h-[100vh] flex-1 rounded-md bg-black md:min-h-min">
+    <div
+      className={cn("min-h-[100vh] flex-1 rounded-md bg-black md:min-h-min", {
+        "mx-auto max-w-sm": screenSize === "small",
+        "w-full": screenSize === "large",
+      })}
+    >
       <ResponsiveGridLayout
         className="layout"
         layouts={theme.layout}

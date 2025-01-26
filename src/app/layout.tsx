@@ -1,3 +1,4 @@
+import { Toaster } from "@/components/ui/sonner";
 import "@/styles/globals.css";
 
 import { GeistSans } from "geist/font/sans";
@@ -17,7 +18,10 @@ export default function RootLayout({
       <head>
         <script src="https://unpkg.com/react-scan/dist/auto.global.js" async />
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        <Toaster />
+      </body>
     </html>
   );
 }

@@ -1,14 +1,17 @@
 "use client";
 
+import { isFullScreenAtom, screenSizeAtom } from "@/atoms/themeAtoms";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Toggle } from "@/components/ui/toggle";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { useThemeStore } from "@/stores/useThemeStore";
+import { useAtom, useAtomValue } from "jotai";
 import {
   Expand,
   Palette,
   Plus,
+  Shrink,
   Smartphone,
   Sparkle,
   Trash,
@@ -17,8 +20,10 @@ import {
 } from "lucide-react";
 import React from "react";
 
-export const FloatingBar = () => {
+export const FloatingBar = ({ onExpand }: { onExpand: () => void }) => {
   const resetTheme = useThemeStore((state) => state.resetTheme);
+  const isFullScreen = useAtomValue(isFullScreenAtom);
+  const [screenSize, setScreenSize] = useAtom(screenSizeAtom);
 
   return (
     <div className="fixed bottom-10 left-1/2 z-50 -translate-x-1/2 transform">
@@ -33,17 +38,28 @@ export const FloatingBar = () => {
           <Sparkle className="h-4 w-4" />
         </Toggle>
         <Separator orientation="vertical" className="mr-2 h-4 bg-gray-400" />
-        <ToggleGroup type="single">
-          <ToggleGroupItem value="italic" aria-label="Toggle Small Screen">
+        <ToggleGroup
+          type="single"
+          defaultValue="large"
+          value={screenSize}
+          onValueChange={(value) => {
+            if (value) setScreenSize(value as "large" | "small");
+          }}
+        >
+          <ToggleGroupItem value="small" aria-label="Toggle Small Screen">
             <Smartphone className="h-4 w-4" />
           </ToggleGroupItem>
-          <ToggleGroupItem value="bold" aria-label="Toggle Large Screen">
+          <ToggleGroupItem value="large" aria-label="Toggle Large Screen">
             <TvMinimal className="size-4" />
           </ToggleGroupItem>
         </ToggleGroup>
         <Separator orientation="vertical" className="mr-2 h-4 bg-gray-400" />
-        <Button variant="ghost" size="icon">
-          <Expand className="size-4" />
+        <Button onClick={onExpand} variant="ghost" size="icon">
+          {isFullScreen ? (
+            <Shrink className="size-4" />
+          ) : (
+            <Expand className="size-4" />
+          )}
         </Button>
         <Button variant="ghost" size="icon" onClick={resetTheme}>
           <Trash className="size-4" />
