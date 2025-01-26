@@ -9,12 +9,15 @@ import {
   getLucideIconByName,
   type LucideIconNameType,
 } from "@/helper/get-lucide-icon";
-import { type LinkrNode, type LinkrTheme } from "@/types/linkr-themes.type";
+import { type LinkrNode } from "@/types/linkr-themes.type";
 import { Responsive, WidthProvider } from "react-grid-layout";
+import { useThemeStore } from "@/stores/useThemeStore";
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
-export const ThemeRenderer = ({ theme }: { theme: LinkrTheme }) => {
+export const ThemeRenderer = () => {
+  const theme = useThemeStore((state) => state.theme);
+
   return (
     <div className="min-h-[100vh] flex-1 rounded-xl bg-white md:min-h-min">
       <ResponsiveGridLayout
