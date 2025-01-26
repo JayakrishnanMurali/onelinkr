@@ -16,31 +16,39 @@ const ResponsiveGridLayout = WidthProvider(Responsive);
 
 export const ThemeRenderer = ({ theme }: { theme: LinkrTheme }) => {
   return (
-    <ResponsiveGridLayout
-      className="layout"
-      layouts={theme.layout}
-      breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
-      cols={{ lg: 8, md: 4, sm: 2, xs: 2, xxs: 2 }}
-      rowHeight={50}
-      margin={[10, 10]}
-      containerPadding={{
-        lg: [20, 20],
-        md: [20, 20],
-        sm: [20, 20],
-        xs: [20, 20],
-        xxs: [20, 20],
-      }}
-      isResizable
-      isDraggable
-      compactType="vertical"
-      preventCollision={false}
-      onLayoutChange={(currentLayout, allLayouts) => {
-        console.log("Current Layout:", currentLayout);
-        console.log("All Layouts:", allLayouts);
-      }}
-    >
-      {theme.nodes.map((node) => renderNode(node))}
-    </ResponsiveGridLayout>
+    <div className="min-h-[100vh] flex-1 rounded-xl bg-white md:min-h-min">
+      <ResponsiveGridLayout
+        className="layout"
+        layouts={theme.layout}
+        breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
+        cols={{
+          lg: 12, // Large screens (1200px and above) - allows fine-grained control
+          md: 8, // Medium screens (996px and above) - for tablet landscape mode
+          sm: 6, // Small screens (768px and above) - for smaller tablets
+          xs: 4, // Extra-small screens (480px and above) - for phones
+          xxs: 2, // Very small screens (below 480px) - minimal layout
+        }}
+        rowHeight={40}
+        margin={[10, 10]}
+        containerPadding={{
+          lg: [20, 20],
+          md: [15, 15],
+          sm: [10, 10],
+          xs: [5, 5],
+          xxs: [5, 5],
+        }}
+        isResizable
+        isDraggable
+        compactType="vertical"
+        preventCollision={false}
+        onLayoutChange={(currentLayout, allLayouts) => {
+          console.log("Current Layout:", currentLayout);
+          console.log("All Layouts:", allLayouts);
+        }}
+      >
+        {theme.nodes.map((node) => renderNode(node))}
+      </ResponsiveGridLayout>
+    </div>
   );
 };
 
@@ -56,7 +64,11 @@ function renderNode(node: LinkrNode): JSX.Element {
   switch (type) {
     case "BlockCard":
       return (
-        <BlockCard key={id} className={className}>
+        <BlockCard
+          key={id}
+          className={className}
+          isTransparent={!!props?.isTransparent}
+        >
           {children?.map(renderNode)}
         </BlockCard>
       );

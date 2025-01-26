@@ -1,4 +1,5 @@
 import { ThemeRenderer } from "@/components/theme-renderer";
+import { LinkrClassicTheme } from "@/themes/classic-theme";
 import { notFound } from "next/navigation";
 import { use } from "react";
 
@@ -17,9 +18,7 @@ export default function UserPage({ params }: Props) {
 
   return (
     <main className="container mx-auto">
-      <div className="min-h-[100vh] flex-1 rounded-xl bg-white md:min-h-min">
-        <ThemeRenderer />
-      </div>
+      <ThemeRenderer theme={LinkrClassicTheme} />
     </main>
   );
 }

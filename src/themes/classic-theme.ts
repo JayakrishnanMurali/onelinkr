@@ -7,6 +7,9 @@ export const LinkrClassicTheme: LinkrTheme = {
       id: "1",
       type: "BlockCard",
       className: "flex flex-row items-center bg-transparent p-2",
+      props: {
+        isTransparent: true,
+      },
       children: [
         {
           id: "1a",
@@ -163,7 +166,7 @@ export const LinkrClassicTheme: LinkrTheme = {
   layout: {
     lg: [
       {
-        w: 8,
+        w: 12,
         h: 1,
         x: 0,
         y: 0,
@@ -172,8 +175,8 @@ export const LinkrClassicTheme: LinkrTheme = {
         static: false,
       },
       {
-        w: 4,
-        h: 9,
+        w: 6,
+        h: 11,
         x: 0,
         y: 1,
         i: "2",
@@ -181,28 +184,28 @@ export const LinkrClassicTheme: LinkrTheme = {
         static: false,
       },
       {
-        w: 4,
-        h: 13,
-        x: 4,
+        w: 6,
+        h: 16,
+        x: 6,
         y: 1,
         i: "5",
         moved: false,
         static: false,
       },
       {
-        w: 2,
-        h: 4,
+        w: 3,
+        h: 5,
         x: 0,
-        y: 10,
+        y: 12,
         i: "3",
         moved: false,
         static: false,
       },
       {
-        w: 2,
-        h: 4,
-        x: 2,
-        y: 10,
+        w: 3,
+        h: 5,
+        x: 3,
+        y: 12,
         i: "4",
         moved: false,
         static: false,
