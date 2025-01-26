@@ -17,6 +17,7 @@ const ResponsiveGridLayout = WidthProvider(Responsive);
 
 export const ThemeRenderer = () => {
   const theme = useThemeStore((state) => state.theme);
+  const updateLayout = useThemeStore((state) => state.updateLayout);
 
   return (
     <div className="min-h-[100vh] flex-1 rounded-xl bg-white md:min-h-min">
@@ -25,11 +26,11 @@ export const ThemeRenderer = () => {
         layouts={theme.layout}
         breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
         cols={{
-          lg: 12, // Large screens (1200px and above) - allows fine-grained control
-          md: 8, // Medium screens (996px and above) - for tablet landscape mode
-          sm: 6, // Small screens (768px and above) - for smaller tablets
-          xs: 4, // Extra-small screens (480px and above) - for phones
-          xxs: 2, // Very small screens (below 480px) - minimal layout
+          lg: 12,
+          md: 8,
+          sm: 6,
+          xs: 4,
+          xxs: 2,
         }}
         rowHeight={40}
         margin={[10, 10]}
@@ -44,9 +45,8 @@ export const ThemeRenderer = () => {
         isDraggable
         compactType="vertical"
         preventCollision={false}
-        onLayoutChange={(currentLayout, allLayouts) => {
-          console.log("Current Layout:", currentLayout);
-          console.log("All Layouts:", allLayouts);
+        onLayoutChange={(_, allLayouts) => {
+          updateLayout(allLayouts);
         }}
       >
         {theme.nodes.map((node) => renderNode(node))}
